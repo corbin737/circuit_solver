@@ -1,6 +1,8 @@
 #include <assert.h>
-#include <stdbool.h>
+#include <math.h>
 #include "matrix.h"
+
+const double epsilon = 0.00001;
 
 // Swaps row i and row j
 void eroType1(int rows, int cols, double matrix[rows][cols], int i, int j) {
@@ -29,28 +31,20 @@ void eroType3(int rows, int cols, double matrix[rows][cols], int i, int j, doubl
         matrix[i][c] += k * matrix[j][c];
 }
 
-void upperTriangular(int rows, int cols, double matrix[rows][cols]) {
-    double pivot, curr;
-    // last column needs no modification
-    for (int c = 0; c < cols - 1; c++) {
-        pivot = matrix[c][c];
-        if (pivot == 0) {
-            bool foundNonZero = false;
-            // here c is used as the row number of the pivot
-            for (int r = c + 1; r < rows; r++) {
-                if (matrix[r][c] != 0) {
-                    // c is pivot row
-                    eroType1(rows, cols, matrix, r, c);
-                    pivot = matrix[c][c];
-                    foundNonZero = true;
-                }
-            }
-            if (!foundNonZero) continue;
+// Converts matrix into RREF form
+void rowReduce(int rows, int cols, double matrix[rows][cols]) {
+    int pivotRow = 0;
+    for (int c = 0; c < cols; c++) {
+        int r = pivotRow;
+        while (r < rows && fabs(matrix[r][c]) < epsilon)
+            r++;
+        if (r == rows) continue;
+        eroType1(rows, cols, matrix, r, pivotRow);
+        eroType2(rows, cols, matrix, pivotRow, 1.0 / matrix[pivotRow][c]);
+        for (r = 0; r < rows; r++) {
+            if (r == pivotRow) continue;
+            eroType3(rows, cols, matrix, r, pivotRow, -1.0 * matrix[r][c]);
         }
-        for (int r = c + 1; r < rows; r++) {
-            curr = matrix[r][c];
-            // c is pivot row
-            eroType3(rows, cols, matrix, r, c, -1.0 * curr / pivot);
-        }
+        pivotRow++;
     }
 }
