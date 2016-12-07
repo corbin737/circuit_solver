@@ -4,7 +4,9 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.c \
-    matrix.c
+    matrix.c \
+    circuit.c
 
 HEADERS += \
-    matrix.h
+    matrix.h \
+    circuit.h
