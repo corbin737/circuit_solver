@@ -7,7 +7,7 @@ const double epsilon = 0.00001;
 // Swaps row i and row j
 void eroType1(int rows, int cols, double matrix[rows][cols], int i, int j) {
     if (i == j) return;
-    int temp;
+    double temp;
     for (int c = 0; c < cols; c++) {
         temp = matrix[i][c];
         matrix[i][c] = matrix[j][c];
