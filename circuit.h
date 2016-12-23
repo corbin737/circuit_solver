@@ -6,12 +6,17 @@
 typedef enum {
     Resistor,
     VoltageSource,
-    CurrentSource
+    CurrentSource,
+    VDepVoltageSource,
+    CDepVoltageSource,
+    VDepCurrentSource,
+    CDepCurrentSource
 } ElementType;
 
 typedef struct {
     int beg, end;
     double value;
+    int dependencyIndex;
     ElementType type;
 } Element;
 
