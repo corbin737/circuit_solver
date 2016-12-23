@@ -10,3 +10,6 @@ SOURCES += main.c \
 HEADERS += \
     matrix.h \
     circuit.h
+
+DISTFILES += \
+    input.txt
