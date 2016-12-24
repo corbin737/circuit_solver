@@ -50,11 +50,12 @@ int main(void)
     }
 
     double voltages[n];
-    nodeVoltages(circuit, n, voltages);
-    int nodes = countNodes(circuit, n);
+    double currents[n];
+    double powers[n];
+    solveCircuit(circuit, n, voltages, currents, powers);
 
-    for (int i = 0; i < nodes; i++) {
-        printf("Node %d: %.3f\n", i, voltages[i]);
+    for (int i = 0; i < n; i++) {
+        printf("%d: Vol:%.3fV, Cur:%.3fA, Pwr:%.3fW\n", i, voltages[i], currents[i], powers[i]);
     }
 
     return 0;
