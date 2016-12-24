@@ -12,4 +12,4 @@ HEADERS += \
     circuit.h
 
 DISTFILES += \
-    input.txt
+    tests.txt

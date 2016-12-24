@@ -3,7 +3,8 @@
 #include "circuit.h"
 
 // Calculates node voltages of a given circuit
-void nodeVoltages(Element circuit[], int n, int nodes, double voltages[]) {
+void nodeVoltages(Element circuit[], int n, double voltages[]) {
+    int nodes = countNodes(circuit, n);
     int vSources = 0;
     for (int i = 0; i < n; i++)
         if (circuit[i].type == VoltageSource ||
@@ -99,4 +100,14 @@ void nodeVoltages(Element circuit[], int n, int nodes, double voltages[]) {
     for (int node = 0; node < nodes; node++) {
         voltages[node] = matrix[node][dimension - 1];
     }
+}
+
+int countNodes(Element circuit[], int n) {
+    int nodes = 0;
+    for (int i = 0; i < n; i++) {
+        if (circuit[i].beg > nodes) nodes = circuit[i].beg;
+        if (circuit[i].end > nodes) nodes = circuit[i].end;
+    }
+    // We want # of nodes, not max node index
+    return ++nodes;
 }

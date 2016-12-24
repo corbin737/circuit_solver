@@ -20,6 +20,7 @@ typedef struct {
     ElementType type;
 } Element;
 
-void nodeVoltages(Element circuit[], int n, int nodes, double voltages[]);
+void nodeVoltages(Element circuit[], int n, double voltages[]);
+int countNodes(Element circuit[], int n);
 
 #endif

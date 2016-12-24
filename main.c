@@ -49,16 +49,10 @@ int main(void)
         circuit[i].end = end;
     }
 
-    int nodes = 0;
-    for (int i = 0; i < n; i++) {
-        if (circuit[i].beg > nodes) nodes = circuit[i].beg;
-        if (circuit[i].end > nodes) nodes = circuit[i].end;
-    }
-    // We want # of nodes, not max index
-    nodes++;
-
     double voltages[n];
-    nodeVoltages(circuit, n, nodes, voltages);
+    nodeVoltages(circuit, n, voltages);
+    int nodes = countNodes(circuit, n);
+
     for (int i = 0; i < nodes; i++) {
         printf("Node %d: %.3f\n", i, voltages[i]);
     }
