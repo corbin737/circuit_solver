@@ -20,4 +20,4 @@ To input a circuit, start by labelling all nodes and counting the total number o
 - Voltage Dependent Current Source: Suppose the source output is some multiple of the voltage across a resistor listed as the first element in the input. For a source from node 6 to 5 that multiplies this voltage by 0.002, `0.002 VDCS (0) 6 5`
 - Current Dependent Current Source: Suppose the source output is some multiple of the current through a resistor listed as the ninth element in the input. For a source from node 4 to 8 that multiplies this current by 1, `1 CDCS (8) 4 8`
 
-Further examples can be found in [the tests file](../blob/master/tests.txt).
+Further examples can be found in [the tests file](../master/tests.txt).
